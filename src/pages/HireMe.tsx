@@ -3,6 +3,8 @@ import { ArrowLeft, Send, User, Mail, Phone, Briefcase, FileText, ChevronDown } 
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "sonner";
+import { db } from "../lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const HireMe = () => {
     const [formData, setFormData] = useState({
@@ -12,6 +14,7 @@ const HireMe = () => {
         service: "",
         description: "",
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const services = [
         "Graphic Design",
@@ -21,11 +24,25 @@ const HireMe = () => {
         "Other Creative Project",
     ];
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Form submitted:", formData);
-        toast.success("Message sent successfully! I'll get back to you soon.");
-        setFormData({ name: "", email: "", phone: "", service: "", description: "" });
+        setIsSubmitting(true);
+
+        try {
+            await addDoc(collection(db, "inquiries"), {
+                ...formData,
+                createdAt: serverTimestamp(),
+            });
+
+            console.log("Form submitted to Firebase:", formData);
+            toast.success("Message sent successfully! I'll get back to you soon.");
+            setFormData({ name: "", email: "", phone: "", service: "", description: "" });
+        } catch (error) {
+            console.error("Error adding document: ", error);
+            toast.error("An error occurred. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -169,10 +186,11 @@ const HireMe = () => {
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className="w-full flex items-center justify-center gap-3 px-8 py-5 md:py-6 rounded-2xl bg-primary text-primary-foreground font-black uppercase tracking-widest transition-all hover:shadow-[0_0_50px_hsl(var(--primary)/0.4)] hover:scale-[1.02] active:scale-[0.98]"
+                            disabled={isSubmitting}
+                            className="w-full flex items-center justify-center gap-3 px-8 py-5 md:py-6 rounded-2xl bg-primary text-primary-foreground font-black uppercase tracking-widest transition-all hover:shadow-[0_0_50px_hsl(var(--primary)/0.4)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                         >
-                            <Send className="w-6 h-6" />
-                            Send Inquiry
+                            <Send className={`w-6 h-6 ${isSubmitting ? 'animate-pulse' : ''}`} />
+                            {isSubmitting ? 'Sending...' : 'Send Inquiry'}
                         </button>
                     </form>
                 </motion.div>

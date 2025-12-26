@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Mail, Phone, MapPin, Send, ArrowRight, ChevronDown } from "lucide-react";
+import { db } from "../lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { toast } from "sonner";
 
 const Contact = () => {
   const ref = useRef(null);
@@ -13,6 +16,7 @@ const Contact = () => {
     service: "",
     description: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const services = [
     "Graphic Design",
@@ -22,10 +26,24 @@ const Contact = () => {
     "Other Creative Project",
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    window.location.href = `mailto:manuelvardy8@gmail.com?subject=Portfolio Inquiry: ${formData.service} from ${formData.name}&body=Phone: ${formData.phone}%0D%0A%0D%0ADescription: ${formData.description}`;
+    setIsSubmitting(true);
+
+    try {
+      await addDoc(collection(db, "contact_submissions"), {
+        ...formData,
+        createdAt: serverTimestamp(),
+      });
+
+      toast.success("Inquiry sent successfully! I'll get back to you soon.");
+      setFormData({ name: "", email: "", phone: "", service: "", description: "" });
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      toast.error("Failed to send inquiry. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -227,10 +245,11 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-3 px-6 md:px-8 py-4 md:py-5 rounded-xl md:rounded-2xl bg-primary text-primary-foreground font-black uppercase tracking-widest text-sm md:text-base transition-all hover:shadow-[0_0_40px_hsl(var(--primary)/0.4)] hover:scale-[1.02] active:scale-[0.98]"
+                disabled={isSubmitting}
+                className="w-full flex items-center justify-center gap-3 px-6 md:px-8 py-4 md:py-5 rounded-xl md:rounded-2xl bg-primary text-primary-foreground font-black uppercase tracking-widest text-sm md:text-base transition-all hover:shadow-[0_0_40px_hsl(var(--primary)/0.4)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
-                <Send className="w-5 h-5" />
-                Send Inquiry
+                <Send className={`w-5 h-5 ${isSubmitting ? 'animate-pulse' : ''}`} />
+                {isSubmitting ? 'Sending...' : 'Send Inquiry'}
               </button>
             </form>
           </motion.div>
