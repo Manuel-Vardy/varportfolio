@@ -14,6 +14,13 @@ interface EmailData {
 }
 
 export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
+  const apiKey = import.meta.env.VITE_BREVO_API_KEY;
+
+  if (!apiKey) {
+    console.error('Brevo API key is missing from environment variables (VITE_BREVO_API_KEY).');
+    return false;
+  }
+
   try {
     const response = await axios.post(
       BREVO_API_URL,

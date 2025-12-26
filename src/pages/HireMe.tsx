@@ -37,24 +37,30 @@ const HireMe = () => {
             });
 
             // 2. Send Automated Emails (Notification to Admin + Confirmation to User)
-            // Note: These run in the background
-            sendInquiryNotification({
-                name: formData.name,
-                email: formData.email,
-                message: formData.description,
-                subject: `Hire Me: ${formData.service}`
-            });
+            const [notifSent, replySent] = await Promise.all([
+                sendInquiryNotification({
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.description,
+                    subject: `Hire Me: ${formData.service}`
+                }),
+                sendAutoReply({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    service: formData.service,
+                    description: formData.description
+                })
+            ]);
 
-            sendAutoReply({
-                name: formData.name,
-                email: formData.email,
-                phone: formData.phone,
-                service: formData.service,
-                description: formData.description
-            });
+            if (!notifSent || !replySent) {
+                console.warn("Email notification failed. Check Brevo API configuration.");
+                toast.warning("Message received, but phone notification could not be sent. Please check your email configuration.");
+            } else {
+                toast.success("Message sent successfully! You will receive a confirmation email shortly.");
+            }
 
-            console.log("Form submitted to Firebase and Emails triggered:", formData);
-            toast.success("Message sent successfully! I'll get back to you soon.");
+            console.log("Form submission process completed.");
             setFormData({ name: "", email: "", phone: "", service: "", description: "" });
         } catch (error) {
             console.error("Error adding document: ", error);

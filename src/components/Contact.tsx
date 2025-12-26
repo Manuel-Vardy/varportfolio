@@ -39,23 +39,29 @@ const Contact = () => {
       });
 
       // 2. Send Automated Emails (Notification to Admin + Confirmation to User)
-      // Note: These run in the background
-      sendInquiryNotification({
-        name: formData.name,
-        email: formData.email,
-        message: formData.description,
-        subject: `Contact Section: ${formData.service}`
-      });
+      const [notifSent, replySent] = await Promise.all([
+        sendInquiryNotification({
+          name: formData.name,
+          email: formData.email,
+          message: formData.description,
+          subject: `Contact Section: ${formData.service}`
+        }),
+        sendAutoReply({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+          description: formData.description
+        })
+      ]);
 
-      sendAutoReply({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        service: formData.service,
-        description: formData.description
-      });
+      if (!notifSent || !replySent) {
+        console.warn("Email notification failed. Check Brevo API configuration.");
+        toast.warning("Inquiry saved, but phone notification failed. Check your email setup.");
+      } else {
+        toast.success("Inquiry sent successfully! A confirmation email is on its way.");
+      }
 
-      toast.success("Inquiry sent successfully! I'll get back to you soon.");
       setFormData({ name: "", email: "", phone: "", service: "", description: "" });
     } catch (error) {
       console.error("Error submitting contact form:", error);
