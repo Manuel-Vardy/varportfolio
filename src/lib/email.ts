@@ -15,9 +15,10 @@ interface EmailData {
 
 export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
   const apiKey = import.meta.env.VITE_BREVO_API_KEY;
+  const senderEmail = import.meta.env.VITE_SENDER_EMAIL;
 
   if (!apiKey) {
-    console.error('Brevo API key is missing from environment variables (VITE_BREVO_API_KEY).');
+    console.error('CRITICAL: Brevo API key (VITE_BREVO_API_KEY) is missing in .env!');
     return false;
   }
 
@@ -27,7 +28,7 @@ export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
       {
         sender: emailData.sender || {
           name: 'Mr. Vardy Portfolio',
-          email: import.meta.env.VITE_SENDER_EMAIL || 'noreply@vardyportfolio.com'
+          email: senderEmail || 'noreply@https://varportfolio.vercel.app'
         },
         to: [{ email: emailData.to }],
         subject: emailData.subject,
@@ -35,15 +36,16 @@ export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
       },
       {
         headers: {
-          'api-key': import.meta.env.VITE_BREVO_API_KEY,
+          'api-key': apiKey,
           'Content-Type': 'application/json'
         }
       }
     );
 
-    return response.status === 201;
-  } catch (error) {
-    console.error('Email sending failed:', error);
+    // Brevo typically returns 201, but 202 is also successful for accepted emails
+    return response.status === 201 || response.status === 202;
+  } catch (error: any) {
+    console.error('Email sending failed:', error.response?.data || error.message);
     return false;
   }
 };
