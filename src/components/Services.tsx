@@ -100,7 +100,7 @@ const Services = () => {
                 {service.description}
               </p>
 
-              <div className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+              <div className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-primary opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
                 Learn More
                 <ArrowRight className="w-4 h-4" />
               </div>
