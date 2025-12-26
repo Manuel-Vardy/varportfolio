@@ -61,7 +61,7 @@ const Contact = () => {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-primary/10" />
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[hsl(var(--lemongreen)/0.08)] rounded-full blur-[100px]" />
 
           <div className="relative z-10 text-center py-12 md:py-24 px-4 md:px-6">
             <h2 className="text-3xl md:text-5xl lg:text-7xl font-sans font-black mb-6 md:mb-8 tracking-tighter leading-tight">

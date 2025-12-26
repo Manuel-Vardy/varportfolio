@@ -51,6 +51,10 @@ const Services = () => {
 
   return (
     <section id="services" className="py-20 md:py-32 relative overflow-hidden" ref={ref}>
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -mr-64 -mt-64" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[hsl(var(--lemongreen)/0.05)] rounded-full blur-[100px] -ml-40 -mb-40" />
+
       <div className="container relative z-10">
         {/* Header */}
         <motion.div

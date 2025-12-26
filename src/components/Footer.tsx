@@ -34,7 +34,7 @@ const Footer = () => {
                   alt="Vardy Logo"
                   className="w-full h-full object-cover"
                   style={{
-                    filter: 'brightness(1.3) saturate(2.5) hue-rotate(90deg) contrast(1.1)'
+                    filter: 'brightness(1.3) saturate(2.5) hue-rotate(135deg) contrast(1.1)'
                   }}
                 />
               </div>

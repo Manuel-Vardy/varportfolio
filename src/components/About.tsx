@@ -15,7 +15,11 @@ const About = () => {
 
   return (
     <section id="about" className="py-20 md:py-32 relative overflow-hidden" ref={ref}>
-      <div className="container">
+      {/* Background Decor */}
+      <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -mr-40" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[hsl(var(--lemongreen)/0.05)] rounded-full blur-[120px] -ml-64" />
+
+      <div className="container relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
           {/* Left Content */}
           <motion.div

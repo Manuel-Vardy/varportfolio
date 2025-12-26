@@ -9,7 +9,8 @@ const Hero = () => {
       {/* Background gradient effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-background" />
       <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-float" />
-      <div className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-[100px] animate-float-delayed" />
+      <div className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-[hsl(var(--lemongreen)/0.1)] rounded-full blur-[100px] animate-float-delayed" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="container relative z-10 pt-36 pb-20 md:py-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">

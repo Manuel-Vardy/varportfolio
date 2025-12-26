@@ -33,7 +33,7 @@ const HireMe = () => {
             {/* Background Decor */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -mr-64 -mt-64" />
-                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -ml-64 -mb-64" />
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[hsl(var(--lemongreen)/0.05)] rounded-full blur-[120px] -ml-64 -mb-64" />
             </div>
 
             <div className="container relative z-10 py-12 md:py-20 max-w-4xl">
