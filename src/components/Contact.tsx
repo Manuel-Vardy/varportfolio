@@ -5,6 +5,7 @@ import { Mail, Phone, MapPin, Send, ArrowRight, ChevronDown } from "lucide-react
 import { db } from "../lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { toast } from "sonner";
+import { sendInquiryNotification, sendAutoReply } from "../lib/email";
 
 const Contact = () => {
   const ref = useRef(null);
@@ -31,9 +32,27 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
+      // 1. Save to Database
       await addDoc(collection(db, "contact_submissions"), {
         ...formData,
         createdAt: serverTimestamp(),
+      });
+
+      // 2. Send Automated Emails (Notification to Admin + Confirmation to User)
+      // Note: These run in the background
+      sendInquiryNotification({
+        name: formData.name,
+        email: formData.email,
+        message: formData.description,
+        subject: `Contact Section: ${formData.service}`
+      });
+
+      sendAutoReply({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        description: formData.description
       });
 
       toast.success("Inquiry sent successfully! I'll get back to you soon.");

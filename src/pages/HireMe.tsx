@@ -5,6 +5,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { db } from "../lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { sendInquiryNotification, sendAutoReply } from "../lib/email";
 
 const HireMe = () => {
     const [formData, setFormData] = useState({
@@ -29,12 +30,30 @@ const HireMe = () => {
         setIsSubmitting(true);
 
         try {
+            // 1. Save to Database
             await addDoc(collection(db, "inquiries"), {
                 ...formData,
                 createdAt: serverTimestamp(),
             });
 
-            console.log("Form submitted to Firebase:", formData);
+            // 2. Send Automated Emails (Notification to Admin + Confirmation to User)
+            // Note: These run in the background
+            sendInquiryNotification({
+                name: formData.name,
+                email: formData.email,
+                message: formData.description,
+                subject: `Hire Me: ${formData.service}`
+            });
+
+            sendAutoReply({
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                service: formData.service,
+                description: formData.description
+            });
+
+            console.log("Form submitted to Firebase and Emails triggered:", formData);
             toast.success("Message sent successfully! I'll get back to you soon.");
             setFormData({ name: "", email: "", phone: "", service: "", description: "" });
         } catch (error) {

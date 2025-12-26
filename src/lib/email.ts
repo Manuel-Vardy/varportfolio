@@ -48,7 +48,7 @@ export const sendInquiryNotification = async (inquiryData: {
   subject?: string;
 }): Promise<boolean> => {
   const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || 'admin@vardyportfolio.com';
-  
+
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h2 style="color: #2563eb; margin-bottom: 20px;">New Inquiry Received</h2>
@@ -83,27 +83,43 @@ export const sendInquiryNotification = async (inquiryData: {
 export const sendAutoReply = async (inquiryData: {
   name: string;
   email: string;
+  phone?: string;
+  service?: string;
+  description?: string;
 }): Promise<boolean> => {
   const htmlContent = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h2 style="color: #2563eb; margin-bottom: 20px;">Thank You for Your Inquiry!</h2>
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
+      <h2 style="color: #2563eb; margin-bottom: 20px;">Inquiry Confirmation</h2>
       
       <p>Dear ${inquiryData.name},</p>
       
       <p style="color: #475569; line-height: 1.6;">
-        Thank you for reaching out through my portfolio. I've received your message and will get back to you as soon as possible.
+        Thank you for reaching out! This is a confirmation that your inquiry has been successfully sent through my portfolio. 
+        I've received your details and will get back to you as soon as possible.
       </p>
-      
-      <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
-        <p style="margin: 0; color: #64748b;">
-          I typically respond within 24-48 hours. If your matter is urgent, please mention it in your message.
-        </p>
+
+      <div style="background: #f8fafc; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin: 25px 0;">
+        <h3 style="margin-top: 0; color: #1e293b; border-bottom: 2px solid #2563eb; padding-bottom: 10px; display: inline-block;">Your Inquiry Details:</h3>
+        <p style="margin: 15px 0 5px 0;"><strong>Name:</strong> ${inquiryData.name}</p>
+        <p style="margin: 5px 0;"><strong>Email:</strong> ${inquiryData.email}</p>
+        ${inquiryData.phone ? `<p style="margin: 5px 0;"><strong>Phone:</strong> ${inquiryData.phone}</p>` : ''}
+        ${inquiryData.service ? `<p style="margin: 5px 0;"><strong>Interested In:</strong> ${inquiryData.service}</p>` : ''}
+        ${inquiryData.description ? `
+          <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
+            <p style="margin: 0; font-weight: bold;">Description:</p>
+            <p style="margin: 5px 0; color: #475569; white-space: pre-wrap;">${inquiryData.description}</p>
+          </div>
+        ` : ''}
       </div>
       
-      <div style="margin-top: 30px;">
-        <p style="color: #475569;">Best regards,</p>
-        <p style="color: #1e293b; font-weight: bold;">Mr. Vardy</p>
-        <p style="color: #64748b; font-size: 14px;">
+      <p style="color: #64748b; font-size: 14px;">
+        I typically respond within 24-48 hours. If your matter is urgent, please mention it in your message.
+      </p>
+      
+      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+        <p style="color: #475569; margin: 0;">Best regards,</p>
+        <p style="color: #1e293b; font-weight: bold; margin: 5px 0;">Mr. Vardy</p>
+        <p style="color: #64748b; font-size: 14px; margin: 0;">
           IT Student & Creative Designer<br>
           Kumasi, Ghana
         </p>
@@ -113,7 +129,7 @@ export const sendAutoReply = async (inquiryData: {
 
   return await sendEmail({
     to: inquiryData.email,
-    subject: 'Thank You for Your Inquiry - Mr. Vardy Portfolio',
+    subject: `Submission Confirmed: Inquiry from ${inquiryData.name}`,
     htmlContent
   });
 };
