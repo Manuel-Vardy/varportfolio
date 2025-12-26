@@ -28,7 +28,7 @@ export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
       {
         sender: emailData.sender || {
           name: 'Mr. Vardy Portfolio',
-          email: senderEmail || 'noreply@https://varportfolio.vercel.app'
+          email: senderEmail || 'manuelvardy83@gmail.com'
         },
         to: [{ email: emailData.to }],
         subject: emailData.subject,
@@ -53,6 +53,7 @@ export const sendEmail = async (emailData: EmailData): Promise<boolean> => {
 export const sendInquiryNotification = async (inquiryData: {
   name: string;
   email: string;
+  phone?: string;
   message: string;
   subject?: string;
 }): Promise<boolean> => {
@@ -65,6 +66,7 @@ export const sendInquiryNotification = async (inquiryData: {
         <h3 style="margin-top: 0; color: #1e293b;">Contact Details:</h3>
         <p><strong>Name:</strong> ${inquiryData.name}</p>
         <p><strong>Email:</strong> ${inquiryData.email}</p>
+        ${inquiryData.phone ? `<p><strong>Phone:</strong> ${inquiryData.phone}</p>` : ''}
         <p><strong>Subject:</strong> ${inquiryData.subject || 'No subject provided'}</p>
       </div>
       

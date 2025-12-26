@@ -43,6 +43,7 @@ const Contact = () => {
         sendInquiryNotification({
           name: formData.name,
           email: formData.email,
+          phone: formData.phone,
           message: formData.description,
           subject: `Contact Section: ${formData.service}`
         }),

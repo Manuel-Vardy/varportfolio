@@ -41,6 +41,7 @@ const HireMe = () => {
                 sendInquiryNotification({
                     name: formData.name,
                     email: formData.email,
+                    phone: formData.phone,
                     message: formData.description,
                     subject: `Hire Me: ${formData.service}`
                 }),
