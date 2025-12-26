@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import vardyPortrait from "@/assets/vardy-new-portrait.jpg";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -30,20 +31,18 @@ const Hero = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground max-w-lg leading-relaxed">
-              Hi, I'm Mr. Vardy — a multidisciplinary creative from Kumasi, Ghana.
+              Hi, I'm Mr. Vardy — a multidisciplinary creative from Ghana.
               I blend technology with artistry to deliver premium, functional designs.
             </p>
 
             <div className="flex flex-wrap gap-4 md:gap-6 pt-4">
-              <motion.a
-                href="#contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 rounded-full bg-primary text-primary-foreground font-bold text-sm md:text-base transition-all hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)]"
+              <Link
+                to="/hire-me"
+                className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 rounded-full bg-primary text-primary-foreground font-bold text-sm md:text-base transition-all hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)] hover:scale-105 active:scale-95"
               >
                 Get in Touch
                 <ArrowRight className="w-5 h-5" />
-              </motion.a>
+              </Link>
               <motion.a
                 href="#services"
                 whileHover={{ scale: 1.05 }}

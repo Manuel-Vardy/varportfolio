@@ -1,14 +1,15 @@
 import { Mail, Phone, MapPin } from "lucide-react";
 import logo from "@/assets/vardy-logo-new.jpg";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/#about" },
+    { name: "Services", href: "/#services" },
+    { name: "Contact", href: "/hire-me" },
   ];
 
   const services = [
@@ -32,6 +33,9 @@ const Footer = () => {
                   src={logo}
                   alt="Vardy Logo"
                   className="w-full h-full object-cover"
+                  style={{
+                    filter: 'brightness(1.3) saturate(2.5) hue-rotate(90deg) contrast(1.1)'
+                  }}
                 />
               </div>
               <span className="text-xl md:text-2xl font-sans font-bold tracking-tighter">VARDY<span className="text-primary">.</span></span>
@@ -61,12 +65,21 @@ const Footer = () => {
             <ul className="grid grid-cols-2 md:grid-cols-1 gap-4">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors text-xs md:text-sm font-semibold"
-                  >
-                    {link.name}
-                  </a>
+                  {link.href.startsWith("/#") ? (
+                    <a
+                      href={link.href}
+                      className="text-muted-foreground hover:text-primary transition-colors text-xs md:text-sm font-semibold"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.href}
+                      className="text-muted-foreground hover:text-primary transition-colors text-xs md:text-sm font-semibold"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

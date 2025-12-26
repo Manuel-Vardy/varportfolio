@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, Phone, MapPin, Send, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ArrowRight, ChevronDown } from "lucide-react";
 
 const Contact = () => {
   const ref = useRef(null);
@@ -9,13 +9,23 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: "",
+    phone: "",
+    service: "",
+    description: "",
   });
+
+  const services = [
+    "Graphic Design",
+    "Web Design & Development",
+    "Piano & Music Production",
+    "Art & Drawing",
+    "Other Creative Project",
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
-    window.location.href = `mailto:manuelvardy8@gmail.com?subject=Portfolio Contact from ${formData.name}&body=${formData.message}`;
+    window.location.href = `mailto:manuelvardy8@gmail.com?subject=Portfolio Inquiry: ${formData.service} from ${formData.name}&body=Phone: ${formData.phone}%0D%0A%0D%0ADescription: ${formData.description}`;
   };
 
   const contactInfo = [
@@ -130,44 +140,84 @@ const Contact = () => {
             className="mt-12 lg:mt-0"
           >
             <form onSubmit={handleSubmit} className="glass-card rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-12 space-y-6 md:space-y-8 border-primary/10 hover:border-primary/20 transition-colors">
-              <div className="space-y-3 md:space-y-4">
-                <label htmlFor="name" className="text-xs md:text-sm font-bold uppercase tracking-widest text-muted-foreground ml-1">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl bg-secondary/30 border border-primary/10 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all font-semibold text-sm md:text-base"
-                  placeholder="John Doe"
-                  required
-                />
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-3 md:space-y-4">
+                  <label htmlFor="name" className="text-xs md:text-sm font-bold uppercase tracking-widest text-muted-foreground ml-1">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl bg-secondary/30 border border-primary/10 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all font-semibold text-sm md:text-base"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-3 md:space-y-4">
+                  <label htmlFor="email" className="text-xs md:text-sm font-bold uppercase tracking-widest text-muted-foreground ml-1">
+                    Your Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl bg-secondary/30 border border-primary/10 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all font-semibold text-sm md:text-base"
+                    placeholder="john@example.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-3 md:space-y-4">
+                  <label htmlFor="phone" className="text-xs md:text-sm font-bold uppercase tracking-widest text-muted-foreground ml-1">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl bg-secondary/30 border border-primary/10 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all font-semibold text-sm md:text-base"
+                    placeholder="+233..."
+                    required
+                  />
+                </div>
+
+                <div className="space-y-3 md:space-y-4">
+                  <label htmlFor="service" className="text-xs md:text-sm font-bold uppercase tracking-widest text-muted-foreground ml-1">
+                    Interested In
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="service"
+                      value={formData.service}
+                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                      className="w-full px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl bg-secondary/30 border border-primary/10 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all font-semibold text-sm md:text-base appearance-none cursor-pointer"
+                      required
+                    >
+                      <option value="" disabled>Select a service</option>
+                      {services.map((service) => (
+                        <option key={service} value={service}>{service}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 w-4 md:w-5 h-4 md:h-5 text-primary pointer-events-none" />
+                  </div>
+                </div>
               </div>
 
               <div className="space-y-3 md:space-y-4">
-                <label htmlFor="email" className="text-xs md:text-sm font-bold uppercase tracking-widest text-muted-foreground ml-1">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl bg-secondary/30 border border-primary/10 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all font-semibold text-sm md:text-base"
-                  placeholder="john@example.com"
-                  required
-                />
-              </div>
-
-              <div className="space-y-3 md:space-y-4">
-                <label htmlFor="message" className="text-xs md:text-sm font-bold uppercase tracking-widest text-muted-foreground ml-1">
-                  Your Message
+                <label htmlFor="description" className="text-xs md:text-sm font-bold uppercase tracking-widest text-muted-foreground ml-1">
+                  Project Description
                 </label>
                 <textarea
-                  id="message"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  id="description"
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   rows={4}
                   className="w-full px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl bg-secondary/30 border border-primary/10 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all font-semibold resize-none text-sm md:text-base"
                   placeholder="Tell me about your project..."
@@ -180,7 +230,7 @@ const Contact = () => {
                 className="w-full flex items-center justify-center gap-3 px-6 md:px-8 py-4 md:py-5 rounded-xl md:rounded-2xl bg-primary text-primary-foreground font-black uppercase tracking-widest text-sm md:text-base transition-all hover:shadow-[0_0_40px_hsl(var(--primary)/0.4)] hover:scale-[1.02] active:scale-[0.98]"
               >
                 <Send className="w-5 h-5" />
-                Send Message
+                Send Inquiry
               </button>
             </form>
           </motion.div>
