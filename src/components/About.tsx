@@ -7,10 +7,10 @@ const About = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const skills = [
-    { name: "Graphic Design", years: "3+ years" },
-    { name: "Web Design & Development", years: "3+ years" },
-    { name: "Piano & Music", years: "5+ years" },
-    { name: "Drawing & Art", years: "5+ years" },
+    { name: "Graphic Design", years: "3+ years", percentage: 95 },
+    { name: "Web Design & Development", years: "3+ years", percentage: 90 },
+    { name: "Piano & Music", years: "5+ years", percentage: 85 },
+    { name: "Drawing & Art", years: "5+ years", percentage: 88 },
   ];
 
   return (
@@ -42,18 +42,54 @@ const About = () => {
               building premium websites.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 md:gap-6 pt-4 md:pt-6">
+            <div className="grid grid-cols-2 gap-8 md:gap-12 pt-8">
               {skills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                  className="p-4 md:p-6 rounded-2xl bg-secondary/30 border border-primary/10 hover:border-primary/30 transition-all group"
-                >
-                  <p className="text-sm md:text-base font-bold text-foreground group-hover:text-primary transition-colors">{skill.name}</p>
-                  <p className="text-[10px] md:text-xs uppercase tracking-widest text-primary mt-2 font-bold">{skill.years}</p>
-                </motion.div>
+                <div key={skill.name} className="flex flex-col items-center gap-4 group">
+                  <div className="relative w-24 h-24 md:w-32 md:h-32">
+                    {/* Background Circle */}
+                    <svg className="w-full h-full -rotate-90">
+                      <circle
+                        cx="50%"
+                        cy="50%"
+                        r="45%"
+                        className="fill-none stroke-secondary/50 stroke-[8]"
+                      />
+                      {/* Animated Progress Circle */}
+                      <motion.circle
+                        cx="50%"
+                        cy="50%"
+                        r="45%"
+                        initial={{ pathLength: 0 }}
+                        animate={isInView ? { pathLength: skill.percentage / 100 } : {}}
+                        transition={{ duration: 2, delay: 0.5 + index * 0.1, ease: "easeInOut" }}
+                        className="fill-none stroke-primary stroke-[8] stroke-round"
+                        style={{
+                          filter: 'drop-shadow(0 0 8px hsl(var(--primary) / 0.5))',
+                          strokeLinecap: 'round'
+                        }}
+                      />
+                    </svg>
+                    {/* Percentage Text */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <motion.span
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : {}}
+                        transition={{ delay: 1.5 + index * 0.1 }}
+                        className="text-xl md:text-2xl font-sans font-black text-primary"
+                      >
+                        {skill.percentage}%
+                      </motion.span>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-sm md:text-base font-bold text-foreground group-hover:text-primary transition-colors">
+                      {skill.name}
+                    </p>
+                    <p className="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground font-bold mt-1">
+                      {skill.years}
+                    </p>
+                  </div>
+                </div>
               ))}
             </div>
           </motion.div>
