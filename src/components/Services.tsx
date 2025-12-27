@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Palette, Code, Music, Pencil, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const ref = useRef(null);
@@ -100,10 +101,44 @@ const Services = () => {
                 {service.description}
               </p>
 
-              <div className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-primary opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                Learn More
-                <ArrowRight className="w-4 h-4" />
-              </div>
+              {service.title === "Graphic Design" ? (
+                <Link
+                  to="/graphics"
+                  className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-primary opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 cursor-pointer"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              ) : service.title === "Web Design & Development" ? (
+                <Link
+                  to="/web-design"
+                  className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-primary opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 cursor-pointer"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              ) : service.title === "Music & Piano" ? (
+                <Link
+                  to="/music"
+                  className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-primary opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 cursor-pointer"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              ) : service.title === "Drawing & Art" ? (
+                <Link
+                  to="/drawing"
+                  className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-primary opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 cursor-pointer"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              ) : (
+                <div className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-primary opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              )}
             </motion.div>
           ))}
         </motion.div>
