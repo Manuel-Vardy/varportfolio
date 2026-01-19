@@ -23,12 +23,9 @@ const App = () => (
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
-<<<<<<< HEAD
-=======
           <Route path="/index" element={<Index />} />
           <Route path="/index.html" element={<Index />} />
           <Route path="/hire-me" element={<HireMe />} />
->>>>>>> be58867 (Initial commit from Antigravity: PowerShell fix, routing fix, and Firebase setup)
           <Route path="/graphics" element={<Graphics />} />
           <Route path="/web-design" element={<WebDesign />} />
           <Route path="/music" element={<Music />} />
