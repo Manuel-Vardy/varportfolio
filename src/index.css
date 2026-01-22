@@ -6,54 +6,59 @@
 
 @layer base {
   :root {
-    --background: 240 10% 4%;
-    --foreground: 0 0% 98%;
+    --background: 222 47% 4%;
+    /* Deepest Midnight Navy */
+    --foreground: 210 40% 98%;
 
-    --card: 240 10% 6%;
-    --card-foreground: 0 0% 98%;
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 240 10% 6%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 222 47% 6%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 195 100% 50%;
-    --primary-foreground: 240 10% 4%;
-    --lemongreen: 76 100% 58%;
+    --primary: 174 100% 33%;
+    /* Business Teal */
+    --primary-foreground: 0 0% 100%;
+    --lemongreen: 174 100% 45%;
+    /* Brighter teal for high-end life */
 
-    --secondary: 240 10% 12%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 222 47% 20%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 240 5% 15%;
-    --muted-foreground: 240 5% 65%;
+    --muted: 222 47% 15%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 195 100% 50%;
-    --accent-foreground: 240 10% 4%;
+    --accent: 174 100% 33%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 240 5% 18%;
-    --input: 240 5% 18%;
-    --ring: 195 100% 50%;
+    --border: 222 47% 15%;
+    --input: 222 47% 15%;
+    --ring: 174 100% 33%;
 
     --radius: 1rem;
 
-    --sidebar-background: 240 10% 6%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 195 100% 50%;
-    --sidebar-primary-foreground: 240 10% 4%;
-    --sidebar-accent: 240 5% 15%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 240 5% 18%;
-    --sidebar-ring: 195 100% 50%;
+    --sidebar-background: 222 47% 6%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 174 100% 33%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 47% 12%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 222 47% 15%;
+    --sidebar-ring: 174 100% 33%;
 
-    /* Custom tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(76 100% 58%) 0%, hsl(195 100% 50%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(240 10% 8%) 0%, hsl(240 10% 4%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(240 10% 6%) 0%, hsl(195 30% 8%) 50%, hsl(240 10% 4%) 100%);
-    --glow-primary: 0 0 40px hsl(195 100% 50% / 0.3);
-    --glow-soft: 0 0 20px hsl(195 100% 50% / 0.15);
-    --shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.6);
-    --shadow-elevated: 0 25px 50px -12px hsl(0 0% 0% / 0.8);
+    /* Simplified effects tokens - Removed intense glows */
+    --gradient-primary: linear-gradient(135deg, hsl(174 100% 33%) 0%, hsl(174 100% 15%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(222 47% 6% / 0.8) 0%, hsl(222 47% 4% / 1) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(222 47% 2%) 0%, hsl(222 47% 4%) 100%);
+    --glow-primary: 0 0 0 transparent;
+    /* Removed glow */
+    --glow-soft: 0 0 0 transparent;
+    /* Removed glow */
+    --shadow-card: 0 10px 30px -10px hsl(0 0% 0% / 0.8);
+    --shadow-elevated: 0 20px 40px -12px hsl(0 0% 0% / 0.9);
   }
 }
 
@@ -125,10 +130,10 @@
   }
 
   .bg-grid {
-    background-size: 40px 40px;
+    background-size: 50px 50px;
     background-image:
-      linear-gradient(to right, hsl(var(--foreground) / 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--foreground) / 0.05) 1px, transparent 1px);
+      linear-gradient(to right, hsl(var(--foreground) / 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--foreground) / 0.03) 1px, transparent 1px);
   }
 }
 
@@ -148,11 +153,11 @@
 
   0%,
   100% {
-    box-shadow: 0 0 20px hsl(195 100% 50% / 0.3);
+    box-shadow: 0 0 20px hsl(174 100% 33% / 0.15);
   }
 
   50% {
-    box-shadow: 0 0 40px hsl(195 100% 50% / 0.5);
+    box-shadow: 0 0 40px hsl(174 100% 33% / 0.3);
   }
 }
 

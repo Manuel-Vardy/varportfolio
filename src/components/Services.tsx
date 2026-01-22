@@ -52,9 +52,8 @@ const Services = () => {
 
   return (
     <section id="services" className="py-20 md:py-32 relative overflow-hidden" ref={ref}>
-      {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -mr-64 -mt-64" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[hsl(var(--lemongreen)/0.05)] rounded-full blur-[100px] -ml-40 -mb-40" />
+      {/* Background Decor - Simplified */}
+      <div className="absolute inset-0 bg-grid opacity-[0.02]" />
 
       <div className="container relative z-10">
         {/* Header */}
@@ -76,69 +75,43 @@ const Services = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {services.map((service, index) => (
             <motion.div
               key={service.title}
               variants={itemVariants}
-              className="group relative glass-card rounded-3xl p-6 md:p-10 hover:bg-primary/5 transition-all duration-500 border-primary/10 hover:border-primary/30"
+              className="group relative rounded-[2.5rem] p-10 border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-500"
             >
-              <div className="flex justify-between items-start mb-6 md:mb-8">
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
-                  <service.icon className="w-6 h-6 md:w-8 md:h-8 text-primary group-hover:text-primary-foreground" />
+
+              <div className="relative z-10">
+                <div className="flex justify-between items-start mb-10">
+                  <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-primary transition-all duration-500">
+                    <service.icon className="w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-500" />
+                  </div>
+                  <span className="text-5xl font-black text-white/5 font-sans group-hover:text-primary/10 transition-colors">
+                    0{index + 1}
+                  </span>
                 </div>
-                <span className="text-2xl md:text-4xl font-sans font-black text-primary/20 group-hover:text-primary/40 transition-colors">
-                  0{index + 1}.
-                </span>
+
+                <h3 className="text-2xl font-sans font-black mb-4 text-white group-hover:text-primary transition-colors tracking-tight">
+                  {service.title}
+                </h3>
+
+                <p className="text-muted-foreground text-sm leading-relaxed mb-10 min-h-[4rem]">
+                  {service.description}
+                </p>
+
+                <Link
+                  to={service.title === "Graphic Design" ? "/graphics" :
+                    service.title === "Web Design & Development" ? "/web-design" :
+                      service.title === "Music & Piano" ? "/music" : "/drawing"}
+                  className="flex items-center gap-3 text-xs font-black uppercase tracking-[0.3em] text-primary hover:gap-5 transition-all w-fit"
+                >
+                  Explore Studio
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
-
-              <h3 className="text-xl md:text-2xl font-sans font-bold mb-3 md:mb-4 group-hover:text-primary transition-colors">
-                {service.title}
-              </h3>
-
-              <p className="text-muted-foreground text-xs md:text-sm leading-relaxed mb-6 md:mb-8">
-                {service.description}
-              </p>
-
-              {service.title === "Graphic Design" ? (
-                <Link
-                  to="/graphics"
-                  className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-primary opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 cursor-pointer"
-                >
-                  Learn More
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              ) : service.title === "Web Design & Development" ? (
-                <Link
-                  to="/web-design"
-                  className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-primary opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 cursor-pointer"
-                >
-                  Learn More
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              ) : service.title === "Music & Piano" ? (
-                <Link
-                  to="/music"
-                  className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-primary opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 cursor-pointer"
-                >
-                  Learn More
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              ) : service.title === "Drawing & Art" ? (
-                <Link
-                  to="/drawing"
-                  className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-primary opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 cursor-pointer"
-                >
-                  Learn More
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              ) : (
-                <div className="flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-primary opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                  Learn More
-                  <ArrowRight className="w-4 h-4" />
-                </div>
-              )}
             </motion.div>
           ))}
         </motion.div>

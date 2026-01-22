@@ -131,7 +131,7 @@ const HireMe = () => {
                                     required
                                     value={formData.name}
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                    placeholder="John Doe"
+                                    placeholder="Emmanuel Owusu"
                                     className="w-full px-6 py-4 rounded-2xl bg-secondary/30 border border-primary/10 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all font-semibold"
                                 />
                             </div>
@@ -147,7 +147,7 @@ const HireMe = () => {
                                     required
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    placeholder="john@example.com"
+                                    placeholder="example@gmail.com"
                                     className="w-full px-6 py-4 rounded-2xl bg-secondary/30 border border-primary/10 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all font-semibold"
                                 />
                             </div>

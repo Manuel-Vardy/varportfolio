@@ -16,50 +16,37 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/60 border-b border-primary/10"
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-md bg-background/80 border-b border-white/5"
     >
-      <div className="container">
-        <div className="flex items-center justify-between h-20">
+      <div className="container mx-auto">
+        <div className="flex items-center justify-between h-24">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-12 h-12 rounded-xl overflow-hidden flex items-center justify-center transition-transform group-hover:scale-110">
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="w-14 h-14 rounded-2xl overflow-hidden border border-white/10 group-hover:border-primary/50 transition-all duration-500">
               <img
                 src={logo}
                 alt="Vardy Logo"
                 className="w-full h-full object-cover"
-                style={{
-                  filter: 'brightness(1.3) saturate(2.5) hue-rotate(135deg) contrast(1.1)'
-                }}
               />
             </div>
-            <span className="text-xl font-sans font-bold tracking-tighter">VARDY<span className="text-primary">.</span></span>
+            <span className="text-2xl font-sans font-black tracking-tighter text-white">
+              VARDY<span className="text-primary">.</span>
+            </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-12">
             {navLinks.map((link) => (
-              link.href.startsWith("/#") ? (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm uppercase tracking-widest font-bold text-muted-foreground hover:text-primary transition-colors relative group"
-                >
-                  {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-                </a>
-              ) : (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className="text-sm uppercase tracking-widest font-bold text-muted-foreground hover:text-primary transition-colors relative group"
-                >
-                  {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-                </Link>
-              )
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-xs font-black uppercase tracking-[0.3em] text-white/70 hover:text-primary transition-all relative group"
+              >
+                {link.name}
+                <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-primary transition-all duration-500 group-hover:w-full" />
+              </a>
             ))}
           </div>
 
@@ -67,7 +54,7 @@ const Navbar = () => {
           <div className="hidden md:block">
             <Link
               to="/hire-me"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary text-primary-foreground font-bold text-sm transition-all hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:scale-105"
+              className="px-8 py-3.5 rounded-2xl bg-primary text-white font-black uppercase tracking-widest text-[10px] hover:brightness-110 transition-all shadow-xl"
             >
               Get Started
             </Link>
@@ -76,9 +63,9 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-secondary/10 transition-colors"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-6 h-6 text-secondary" /> : <Menu className="w-6 h-6 text-secondary" />}
           </button>
         </div>
 
