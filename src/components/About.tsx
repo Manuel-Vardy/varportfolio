@@ -29,16 +29,15 @@ const About = () => {
           >
             <div className="space-y-4">
               <span className="text-sm uppercase tracking-[0.3em] text-primary font-bold">About Me</span>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-sans font-black tracking-tighter leading-tight">
+              <h2 className="text-2xl md:text-5xl lg:text-6xl font-sans font-black tracking-tighter leading-tight">
                 Real passion<br />
                 delivering <span className="text-primary italic">real results.</span>
               </h2>
             </div>
 
-            <p className="text-muted-foreground text-lg md:text-xl leading-relaxed">
-              As an IT student with a deep love for creativity, I bring a unique blend of technical expertise
-              and artistic vision to every project. My journey spans from designing stunning visuals to
-              building premium websites.
+            <p className="text-muted-foreground text-base md:text-xl leading-relaxed">
+              I am an IT student who loves being creative. I use my technical skills and
+              artistic ideas to design beautiful graphics and build high-quality websites.
             </p>
 
             <div className="grid grid-cols-2 gap-8 md:gap-12 pt-8">
@@ -103,31 +102,31 @@ const About = () => {
               {/* Philosophy Cards */}
               {[
                 {
-                  title: "High Quality",
-                  desc: "We prioritize elite-tier quality in every pixel and line of code, ensuring your brand stands out with absolute excellence.",
+                  title: "Quality Work",
+                  desc: "I focus on making every part of your project perfect so your brand looks its best.",
                   icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
                 },
                 {
-                  title: "Smart Design",
-                  desc: "Designing with relentless purpose. Every creative decision is architected to drive exponential business growth.",
+                  title: "Smart Ideas",
+                  desc: "I design with a clear goal in mind. Every choice I make is to help your business grow.",
                   icon: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
                 },
                 {
-                  title: "World Class",
-                  desc: "Local heart with global quality. We make websites that can compete with the best in the world.",
+                  title: "Global Standard",
+                  desc: "Local work with global quality. I create websites that are as good as the best in the world.",
                   icon: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                 }
               ].map((item, idx) => (
-                <div key={idx} className="rounded-3xl p-10 border border-white/10 bg-white/5 hover:border-primary/40 transition-all group">
-                  <div className="flex items-start gap-8">
-                    <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:border-primary/50 transition-colors">
-                      <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div key={idx} className="rounded-2xl md:rounded-3xl p-6 md:p-10 border border-white/10 bg-white/5 hover:border-primary/40 transition-all group">
+                  <div className="flex items-start gap-4 md:gap-8">
+                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center shrink-0 border border-white/10 group-hover:border-primary/50 transition-colors">
+                      <svg className="w-6 h-6 md:w-8 md:h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-2xl font-sans font-black mb-3 text-white tracking-tight">{item.title}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
+                      <h3 className="text-xl md:text-2xl font-sans font-black mb-2 md:mb-3 text-white tracking-tight">{item.title}</h3>
+                      <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-sm">
                         {item.desc}
                       </p>
                     </div>

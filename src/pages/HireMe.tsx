@@ -213,7 +213,7 @@ const HireMe = () => {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full flex items-center justify-center gap-3 px-8 py-5 md:py-6 rounded-2xl bg-primary text-primary-foreground font-black uppercase tracking-widest transition-all hover:shadow-[0_0_50px_hsl(var(--primary)/0.4)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+                            className="w-full flex items-center justify-center gap-3 px-8 py-5 md:py-6 rounded-2xl bg-primary text-primary-foreground font-bold uppercase tracking-widest transition-all hover:shadow-[0_0_50px_hsl(var(--primary)/0.4)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                         >
                             <Send className={`w-6 h-6 ${isSubmitting ? 'animate-pulse' : ''}`} />
                             {isSubmitting ? 'Sending...' : 'Send Inquiry'}

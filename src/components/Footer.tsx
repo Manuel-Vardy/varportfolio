@@ -26,14 +26,16 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <Link to="/" className="flex items-center gap-3 mb-10 group">
-              <div className="w-14 h-14 rounded-2xl overflow-hidden border border-white/10 group-hover:border-primary/30 transition-all">
+              <div className="relative w-14 h-14 rounded-2xl overflow-hidden border border-white/10 group-hover:border-primary/30 transition-all">
                 <img
                   src={logo}
                   alt="Vardy Logo"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover grayscale-[0.2] sepia-[1] hue-rotate-[-25deg] saturate-[6] brightness-[1.1]"
                 />
+                <div className="absolute inset-0 bg-primary/20 mix-blend-color pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent mix-blend-overlay pointer-events-none" />
               </div>
-              <span className="text-2xl font-sans font-black tracking-tighter text-white">VARDY<span className="text-primary">.</span></span>
+              <span className="text-2xl font-sans font-black tracking-tighter text-white"><span className="text-primary">V</span>ARDY<span className="text-primary">.</span></span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed mb-10">
               Elite IT systems and bespoke creative design studio based in Ghana. We define the intersection of tech and prestige.

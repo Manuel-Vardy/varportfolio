@@ -20,45 +20,45 @@ const Hero = () => {
           >
             <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/10 bg-white/5 animate-fade-up">
               <span className="w-2 h-2 rounded-full bg-primary" />
-              <span className="text-xs font-black uppercase tracking-[0.3em] text-white/50">Innovation & Precision</span>
+              <span className="text-xs font-black uppercase tracking-[0.3em] text-white/50">Creative & Reliable</span>
             </div>
 
-            <div className="space-y-6">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-sans font-black text-white leading-[0.9] tracking-tighter">
-                Crafting <span className="text-primary italic font-serif">Digital</span><br />
-                <span className="text-[0.8em] md:text-[0.9em] opacity-90 block mt-2">Masterpieces.</span>
+            <div className="space-y-4 md:space-y-6">
+              <h1 className="text-4xl md:text-7xl lg:text-8xl font-sans font-black text-white leading-[0.9] tracking-tighter">
+                Creating <span className="text-primary italic font-serif">Professional</span><br />
+                <span className="text-[0.8em] md:text-[0.9em] opacity-90 block mt-2">Websites.</span>
               </h1>
-              <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-medium max-w-xl leading-relaxed">
-                Elevating brands through high-end web solutions and elite design systems. Professional Ghanaian expertise, <span className="text-white border-b-2 border-primary/40">Globally delivered.</span>
+              <p className="text-base md:text-xl lg:text-2xl text-muted-foreground font-medium max-w-xl leading-relaxed">
+                I build fast, professional websites that help your business grow. High-quality work from Ghana for <span className="text-white border-b-2 border-primary/40">clients around the world.</span>
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-8 pt-6">
+            <div className="flex flex-wrap gap-4 md:gap-8 pt-4 md:pt-6">
               <Link
                 to="/hire-me"
-                className="group relative px-12 py-6 rounded-2xl bg-primary text-white font-black text-lg transition-all hover:brightness-110 active:scale-95 flex items-center gap-4"
+                className="group relative px-8 py-4 md:px-12 md:py-6 rounded-2xl bg-primary text-white font-bold text-base md:text-lg transition-all hover:brightness-110 active:scale-95 flex items-center gap-3 md:gap-4"
               >
                 Start Your Project
-                <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-2" />
+                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 transition-transform group-hover:translate-x-2" />
               </Link>
 
               <a
                 href="#services"
-                className="group px-12 py-6 rounded-2xl border border-white/10 bg-white/5 text-white font-black text-lg transition-all hover:bg-white/10 flex items-center gap-4"
+                className="group px-8 py-4 md:px-12 md:py-6 rounded-2xl border border-white/10 bg-white/5 text-white font-bold text-base md:text-lg transition-all hover:bg-white/10 flex items-center gap-3 md:gap-4"
               >
                 Our Expertise
               </a>
             </div>
 
             {/* Premium Metrics */}
-            <div className="grid grid-cols-2 gap-12 pt-12 border-t border-white/5">
+            <div className="grid grid-cols-2 gap-8 md:gap-12 pt-8 md:pt-12 border-t border-white/5">
               <div>
-                <p className="text-5xl font-black text-white tracking-tight">50+</p>
-                <p className="text-xs uppercase tracking-[0.4em] text-primary font-bold mt-2">Projects Delivered</p>
+                <p className="text-3xl md:text-5xl font-black text-white tracking-tight">50+</p>
+                <p className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-primary font-bold mt-1 md:mt-2">Projects Delivered</p>
               </div>
               <div>
-                <p className="text-5xl font-black text-white tracking-tight">98%</p>
-                <p className="text-xs uppercase tracking-[0.4em] text-primary font-bold mt-2">Success Velocity</p>
+                <p className="text-3xl md:text-5xl font-black text-white tracking-tight">98%</p>
+                <p className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-primary font-bold mt-1 md:mt-2">Success Velocity</p>
               </div>
             </div>
           </motion.div>
