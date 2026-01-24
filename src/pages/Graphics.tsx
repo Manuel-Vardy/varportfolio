@@ -6,22 +6,94 @@ import Footer from "@/components/Footer";
 
 const graphicsWorks = [
     {
-        title: "Brand Identity - Aura",
-        category: "Branding",
-        description: "Modern minimalist brand identity for a tech startup including logo variations and color palette.",
-        image: "/brain/3f662c61-096b-41de-8404-221359c11df4/graphic_design_1_branding_1766836281790.png",
+        title: "Catalyst Fest",
+        category: "Event Flyer",
+        description: "Sports committee event poster design.",
+        image: "/assets/graphics/design-1.jpg",
     },
     {
-        title: "Flow State - UI/UX",
-        category: "App Design",
-        description: "Creative task management app UI design featuring glassmorphism and vibrant gradients.",
-        image: "/brain/3f662c61-096b-41de-8404-221359c11df4/graphic_design_2_ui_ux_1766836306385.png",
+        title: "10 Hours Experience",
+        category: "Church Event",
+        description: "Transfiguration & Glorification Experience event flyer.",
+        image: "/assets/graphics/design-2.jpg",
     },
     {
-        title: "Creative Hub Poster",
-        category: "Typography",
-        description: "Artistic event poster using bold futuristic typography and abstract shapes.",
-        image: "/brain/3f662c61-096b-41de-8404-221359c11df4/graphic_design_3_poster_1766836330325.png",
+        title: "72 Hours In His Presence",
+        category: "Church Event",
+        description: "The Beloved City Camp event poster.",
+        image: "/assets/graphics/design-3.jpg",
+    },
+    {
+        title: "Birthday Celebration",
+        category: "Celebration",
+        description: "Birthday design for Samuel Akwasi Nyantakyi.",
+        image: "/assets/graphics/design-4.jpg",
+    },
+    {
+        title: "Prince Data Hub",
+        category: "Business Flyer",
+        description: "Promotional flyer for data bundle services.",
+        image: "/assets/graphics/design-5.jpg",
+    },
+    {
+        title: "Annual Harvest",
+        category: "Church Event",
+        description: "Tabere Assembly Annual Harvest & Thanksgiving Service invitation.",
+        image: "/assets/graphics/design-6.jpg",
+    },
+    {
+        title: "Special Chrisbolo",
+        category: "Product Advertisement",
+        description: "Refreshing drink advertisement with ingredient list.",
+        image: "/assets/graphics/design-7.jpg",
+    },
+    {
+        title: "Dave Apple Hub",
+        category: "Business Flyer",
+        description: "iPhone solutions and quality gadgets promotional material.",
+        image: "/assets/graphics/design-8.jpg",
+    },
+    {
+        title: "Birthday Celebration",
+        category: "Celebration",
+        description: "Birthday design for Mrs. Eunice Boateng.",
+        image: "/assets/graphics/design-9.jpg",
+    },
+    {
+        title: "Wedding Packages",
+        category: "Service Pricing",
+        description: "Haviland Pictures wedding photography package price list.",
+        image: "/assets/graphics/design-10.jpg",
+    },
+    {
+        title: "Happy International Men's Day",
+        category: "Social Media",
+        description: "Heirs Technologies celebration post for International Men's Day.",
+        image: "/assets/graphics/design-11.jpg",
+    },
+    {
+        title: "The Kings Crusade",
+        category: "Church Event",
+        description: "The Last Trump Ecclesia event flyer for 'The Kings Crusade'.",
+        image: "/assets/graphics/design-12.jpg",
+    },
+    {
+        title: "Mini Harvest '25",
+        category: "Church Event",
+        description: "The Apostles' Continuation Church International Mini Harvest invitation.",
+        image: "/assets/graphics/design-13.jpg",
+    },
+    {
+        title: "Cross Over Night",
+        category: "Church Event",
+        description: "Christ House Church 31st December Cross Over Night flyer.",
+        image: "/assets/graphics/design-14.jpg",
+    },
+    {
+        title: "Christ Delivers",
+        category: "Church Event",
+        description: "Pentecostal Revival Ministry International Conference flyer.",
+        image: "/assets/graphics/design-15.jpg",
     }
 ];
 
@@ -57,7 +129,7 @@ const Graphics = () => {
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {graphicsWorks.map((work, index) => (
                             <motion.div
-                                key={work.title}
+                                key={work.title + index}
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -67,13 +139,9 @@ const Graphics = () => {
                                     <img
                                         src={work.image}
                                         alt={work.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
-                                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                                        <span className="text-white font-bold flex items-center gap-2">
-                                            View Project <ExternalLink className="w-4 h-4" />
-                                        </span>
-                                    </div>
+                                    {/* Link overlay removed as requested */}
                                 </div>
                                 <div className="p-8">
                                     <span className="text-xs uppercase tracking-widest text-primary font-bold mb-3 block">

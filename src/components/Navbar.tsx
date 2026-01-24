@@ -23,8 +23,8 @@ const Navbar = () => {
       <div className="container mx-auto">
         <div className="flex items-center justify-between h-20 md:h-24 px-4 md:px-0">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="relative w-14 h-14 rounded-2xl overflow-hidden border border-white/10 group-hover:border-primary/50 transition-all duration-500">
+          <Link to="/" className="flex items-center gap-2 md:gap-3 group">
+            <div className="relative w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl overflow-hidden border border-white/10 group-hover:border-primary/50 transition-all duration-500">
               <img
                 src={logo}
                 alt="Vardy Logo"
@@ -33,7 +33,7 @@ const Navbar = () => {
               <div className="absolute inset-0 bg-primary/20 mix-blend-color pointer-events-none" />
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent mix-blend-overlay pointer-events-none" />
             </div>
-            <span className="text-2xl font-sans font-black tracking-tighter text-white">
+            <span className="text-xl md:text-2xl font-sans font-black tracking-tighter text-white">
               <span className="text-primary">V</span>ARDY<span className="text-primary">.</span>
             </span>
           </Link>

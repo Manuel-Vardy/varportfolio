@@ -10,18 +10,21 @@ const webDesignWorks = [
         category: "Web Development",
         description: "A fully responsive e-commerce solution with integrated payment gateways and user dashboards.",
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+        link: "#"
     },
     {
-        title: "SaaS Dashboard",
-        category: "UI/UX & Web",
-        description: "Modern analytics dashboard for a cloud-based service provider.",
-        image: "https://images.unsplash.com/photo-1551288049-bbbda536339a?q=80&w=2340&auto=format&fit=crop",
+        title: "Foureler Kitchen",
+        category: "Web Development",
+        description: "A modern restaurant website featuring a dynamic menu, reservation system, and appetizing visual design.",
+        image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2340&auto=format&fit=crop",
+        link: "https://foureler-kitchen.vercel.app/"
     },
     {
         title: "Eco-Portfolio",
         category: "Frontend",
         description: "A high-performance portfolio site for an environmental agency using Vite and Tailwind CSS.",
         image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2340&auto=format&fit=crop",
+        link: "#"
     }
 ];
 
@@ -56,12 +59,15 @@ const WebDesign = () => {
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {webDesignWorks.map((work, index) => (
-                            <motion.div
+                            <motion.a
+                                href={work.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 key={work.title}
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="group glass-card rounded-3xl overflow-hidden hover:bg-primary/5 transition-all duration-500 border-primary/10 hover:border-primary/30"
+                                className="group glass-card rounded-3xl overflow-hidden hover:bg-primary/5 transition-all duration-500 border-primary/10 hover:border-primary/30 block"
                             >
                                 <div className="aspect-square overflow-hidden bg-muted relative">
                                     <img
@@ -84,7 +90,7 @@ const WebDesign = () => {
                                         {work.description}
                                     </p>
                                 </div>
-                            </motion.div>
+                            </motion.a>
                         ))}
                     </div>
                 </div>
