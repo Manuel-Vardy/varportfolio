@@ -2,17 +2,19 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
+import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background bg-grid">
+    <div className="min-h-screen bg-background">
       <Navbar />
-      <main>
+      <main className="bg-grid-subtle">
         <Hero />
         <About />
         <Services />
+        <Projects />
         <Contact />
       </main>
       <Footer />

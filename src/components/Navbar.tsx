@@ -1,112 +1,129 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import logo from "@/assets/vardy-logo-new.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useTheme } from "./ThemeProvider";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/#about" },
     { name: "Services", href: "/#services" },
-    { name: "Contact", href: "/hire-me" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-md bg-background/80 border-b border-white/5"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/80 backdrop-blur-md border-b border-border py-4" : "bg-transparent py-6"
+        }`}
     >
-      <div className="container mx-auto">
-        <div className="flex items-center justify-between h-20 md:h-24 px-4 md:px-0">
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 md:gap-3 group">
-            <div className="relative w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl overflow-hidden border border-white/10 group-hover:border-primary/50 transition-all duration-500">
+          <Link to="/" className="flex items-center gap-4 group">
+            <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-border group-hover:border-primary/50 transition-all duration-500">
               <img
                 src={logo}
                 alt="Vardy Logo"
-                className="w-full h-full object-cover grayscale-[0.2] sepia-[1] hue-rotate-[-25deg] saturate-[6] brightness-[1.1]"
+                className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-primary/20 mix-blend-color pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent mix-blend-overlay pointer-events-none" />
+              <div className="absolute inset-0 bg-primary/5 mix-blend-overlay" />
             </div>
-            <span className="text-xl md:text-2xl font-sans font-black tracking-tighter text-white">
-              <span className="text-primary">V</span>ARDY<span className="text-primary">.</span>
+            <span className="text-2xl font-black tracking-tighter text-foreground">
+              VARDY<span className="text-primary">.</span>
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-10">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-10">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] text-white/70 hover:text-primary transition-all relative group"
+                className="text-xs font-black uppercase tracking-[0.2em] text-foreground/70 hover:text-primary transition-colors relative group"
               >
                 {link.name}
-                <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-primary transition-all duration-500 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
-          </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+            {/* Theme Toggle */}
+            <button
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              className="p-3 rounded-xl bg-secondary text-foreground hover:bg-primary/10 transition-all duration-300 border border-border"
+              aria-label="Toggle Theme"
+            >
+              {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+            </button>
+
             <Link
               to="/hire-me"
-              className="px-4 py-2.5 lg:px-6 lg:py-3 rounded-lg lg:rounded-xl bg-primary text-white font-bold uppercase tracking-widest text-[9px] lg:text-[10px] hover:brightness-110 transition-all shadow-xl whitespace-nowrap inline-block"
+              className="btn-primary px-6 py-2.5 xl:px-8 xl:py-3 rounded-full text-[10px] xl:text-[11px] font-black uppercase tracking-widest whitespace-nowrap"
             >
-              Get Started
+              Hire Me
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-white/5 transition-colors"
-          >
-            {isOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6 text-white" />}
-          </button>
+          {/* Mobile Actions (Theme Toggle + Menu) */}
+          <div className="flex items-center gap-2 lg:hidden">
+            {/* Theme Toggle (Mobile) */}
+            <button
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              className="p-2.5 rounded-xl bg-secondary text-foreground hover:bg-primary/10 transition-all duration-300 border border-border"
+              aria-label="Toggle Theme"
+            >
+              {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+            </button>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2.5 rounded-xl bg-secondary text-foreground border border-border"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Nav */}
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="md:hidden py-8 px-4 absolute top-20 left-0 right-0 bg-background/95 backdrop-blur-2xl border-b border-border/50 shadow-2xl"
+            className="lg:hidden absolute top-full left-0 right-0 mt-4 bg-background/95 backdrop-blur-xl border border-border rounded-2xl p-8 mx-6 shadow-2xl"
           >
-            <div className="flex flex-col gap-6 items-center text-center">
+            <div className="flex flex-col gap-6 text-center">
               {navLinks.map((link) => (
-                link.href.startsWith("/#") ? (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg font-bold tracking-widest uppercase text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </a>
-                ) : (
-                  <Link
-                    key={link.name}
-                    to={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg font-bold tracking-widest uppercase text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                )
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="text-lg font-black tracking-widest uppercase text-foreground/80 hover:text-primary transition-colors"
+                >
+                  {link.name}
+                </a>
               ))}
               <Link
                 to="/hire-me"
                 onClick={() => setIsOpen(false)}
-                className="w-full max-w-xs inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-primary text-primary-foreground font-black uppercase tracking-widest text-sm mt-4 shadow-lg shadow-primary/20"
+                className="btn-primary w-full py-5 rounded-full text-base font-black tracking-widest uppercase"
               >
-                Get Started
+                Hire Me
               </Link>
             </div>
           </motion.div>

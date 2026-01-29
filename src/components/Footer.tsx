@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Twitter, Linkedin, Github, Instagram } from "lucide-react";
 import logo from "@/assets/vardy-logo-new.jpg";
 import { Link } from "react-router-dom";
 
@@ -9,60 +9,59 @@ const Footer = () => {
     { name: "Home", href: "/" },
     { name: "About", href: "/#about" },
     { name: "Services", href: "/#services" },
-    { name: "Contact", href: "/hire-me" },
+    { name: "Hire Me", href: "/hire-me" },
   ];
 
-  const services = [
-    "Graphic Design",
-    "Web Development",
-    "Music Production",
-    "Art & Drawing",
+  const socialLinks = [
+    { icon: Twitter, href: "#", name: "Twitter" },
+    { icon: Linkedin, href: "#", name: "LinkedIn" },
+    { icon: Github, href: "#", name: "GitHub" },
+    { icon: Instagram, href: "#", name: "Instagram" },
   ];
 
   return (
-    <footer className="relative pt-32 pb-16 bg-background border-t border-white/5">
+    <footer className="relative pt-24 pb-12 bg-background border-t border-border overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-primary/[0.03] rounded-full blur-[150px] pointer-events-none" />
+
       <div className="container relative z-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-24 mb-16 px-4 md:px-0">
           {/* Brand */}
-          <div>
-            <Link to="/" className="flex items-center gap-3 mb-10 group">
-              <div className="relative w-14 h-14 rounded-2xl overflow-hidden border border-white/10 group-hover:border-primary/30 transition-all">
+          <div className="space-y-8 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <Link to="/" className="flex items-center gap-4 group">
+              <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-border group-hover:border-primary/50 transition-all shadow-sm">
                 <img
                   src={logo}
                   alt="Vardy Logo"
-                  className="w-full h-full object-cover grayscale-[0.2] sepia-[1] hue-rotate-[-25deg] saturate-[6] brightness-[1.1]"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-primary/20 mix-blend-color pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent mix-blend-overlay pointer-events-none" />
               </div>
-              <span className="text-2xl font-sans font-black tracking-tighter text-white"><span className="text-primary">V</span>ARDY<span className="text-primary">.</span></span>
+              <span className="text-2xl md:text-3xl font-black tracking-tighter text-foreground">VARDY<span className="text-primary">.</span></span>
             </Link>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-10">
-              Elite IT systems and bespoke creative design studio based in Ghana. We define the intersection of tech and prestige.
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-xs font-medium">
+              Professional web design and creative services for global clients.
             </p>
-            <div className="flex gap-5">
-              {["Twitter", "LinkedIn", "Instagram", "GitHub"].map((social) => (
+            <div className="flex gap-4">
+              {socialLinks.map((social) => (
                 <a
-                  key={social}
-                  href="#"
-                  className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-primary hover:border-primary/50 transition-all"
+                  key={social.name}
+                  href={social.href}
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-background border border-border flex items-center justify-center text-foreground/40 hover:text-white hover:bg-primary hover:border-primary transition-all shadow-sm"
+                  aria-label={social.name}
                 >
-                  <span className="sr-only">{social}</span>
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="4" />
-                  </svg>
+                  <social.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Practice Areas */}
-          <div>
-            <h4 className="font-sans font-black text-xs text-primary uppercase tracking-[0.4em] mb-10">Studio Map</h4>
-            <ul className="space-y-5">
+          {/* Navigation */}
+          <div className="text-center lg:text-left">
+            <h4 className="text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-8 lg:mb-10">Links</h4>
+            <ul className="space-y-4 md:space-y-5">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.href} className="text-white/60 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">
+                  <Link to={link.href} className="text-foreground/60 hover:text-primary transition-colors text-sm font-bold uppercase tracking-widest">
                     {link.name}
                   </Link>
                 </li>
@@ -70,50 +69,40 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Our Expertise */}
-          <div>
-            <h4 className="font-sans font-black text-xs text-primary uppercase tracking-[0.4em] mb-10">Services</h4>
-            <ul className="space-y-5">
-              {services.map((service) => (
-                <li key={service} className="text-white/60 text-sm font-bold uppercase tracking-widest">
-                  {service}
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Contact Details */}
-          <div>
-            <h4 className="font-sans font-black text-xs text-primary uppercase tracking-[0.4em] mb-10">Get In Touch</h4>
-            <ul className="space-y-8">
-              <li className="flex items-start gap-4">
-                <MapPin className="w-6 h-6 text-primary" />
-                <span className="text-white/80 text-sm font-medium">Kumasi, Ashanti<br />Republic of Ghana</span>
-              </li>
-              <li className="flex items-start gap-4">
-                <Phone className="w-6 h-6 text-primary" />
-                <a href="tel:+233240918031" className="text-white/80 text-sm font-bold hover:text-white transition-colors tracking-widest">
-                  +233 24 091 8031
-                </a>
-              </li>
-              <li className="flex items-start gap-4">
-                <Mail className="w-6 h-6 text-primary" />
-                <a href="mailto:manuelvardy8@gmail.com" className="text-white/80 text-sm font-bold hover:text-white transition-colors tracking-widest">
-                  VAR@DESIGN.COM
-                </a>
-              </li>
-            </ul>
+          <div className="lg:col-span-2">
+            <h4 className="text-center lg:text-left text-[10px] font-black text-primary uppercase tracking-[0.4em] mb-8 lg:mb-10">Contact</h4>
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 md:gap-8">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 p-6 md:p-8 rounded-2xl md:rounded-3xl bg-secondary/50 border border-border shadow-sm text-center sm:text-left">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-background flex items-center justify-center text-primary shadow-sm shrink-0">
+                  <MapPin className="w-5 h-5 md:w-6 md:h-6" />
+                </div>
+                <div>
+                  <p className="text-foreground font-black text-[9px] md:text-[10px] uppercase tracking-widest mb-1 md:mb-2">Location</p>
+                  <span className="text-muted-foreground text-xs md:text-sm font-medium">Kumasi, Ashanti<br />Ghana</span>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 p-6 md:p-8 rounded-2xl md:rounded-3xl bg-secondary/50 border border-border shadow-sm text-center sm:text-left">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-background flex items-center justify-center text-primary shadow-sm shrink-0">
+                  <Mail className="w-5 h-5 md:w-6 md:h-6" />
+                </div>
+                <div>
+                  <p className="text-foreground font-black text-[9px] md:text-[10px] uppercase tracking-widest mb-1 md:mb-2">Email</p>
+                  <a href="mailto:manuelvardy83@gmail.com" className="text-muted-foreground text-xs md:text-sm font-medium hover:text-primary transition-colors break-all">
+                    manuelvardy83@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8">
-          <p className="text-white/30 text-xs font-bold uppercase tracking-[0.2em]">
-            © {currentYear} Vardy Elite Creative Studio. Ghanaian Origins. Global Impact.
-          </p>
-          <div className="flex gap-12 text-xs font-bold uppercase tracking-[0.2em] text-white/30">
-            <a href="#" className="hover:text-primary transition-colors">Privacy</a>
-            <a href="#" className="hover:text-primary transition-colors">Terms</a>
+        <div className="pt-10 md:pt-12 border-t border-border flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] text-foreground/20 text-center">
+          <p>© {currentYear} Vardy Elite Creative Studio. All Rights Reserved.</p>
+          <div className="flex gap-6 md:gap-10">
+            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>

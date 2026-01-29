@@ -1,115 +1,210 @@
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
-import vardyPortrait from "@/assets/vardy-new-portrait.jpg";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, MousePointer2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import heroImage from "@/assets/vardy-new-portrait.jpg";
+import { useState, useEffect } from "react";
+
+const slides = [
+    {
+        id: 1,
+        badge: "Available for New Projects",
+        title: "Building",
+        highlight: "Digital Experiences",
+        description: "I design and build high-quality websites for modern brands. Focusing on clean design, fast code, and real results.",
+        ctaMain: "Start a Project",
+        ctaSec: "My Services",
+        image: heroImage,
+        statLabel: "Experience",
+        statValue: "5+ Years",
+        cardBg: "bg-blue-600",
+        textColor: "text-white",
+        mutedColor: "text-blue-100",
+        badgeBg: "bg-white",
+        badgeText: "text-blue-600",
+        borderColor: "border-blue-500",
+        indicatorBg: "bg-blue-600"
+    },
+    {
+        id: 2,
+        badge: "World-Class Quality",
+        title: "Setting",
+        highlight: "Global Standards",
+        description: "Delivering web solutions that meet international benchmarks for performance, accessibility, and design.",
+        ctaMain: "View Work",
+        ctaSec: "My Process",
+        image: heroImage,
+        statLabel: "Projects",
+        statValue: "50+ Delivered",
+        cardBg: "bg-[#0B1120]", // Dark "Unleash" Navy
+        textColor: "text-white",
+        mutedColor: "text-slate-300",
+        badgeBg: "bg-white",
+        badgeText: "text-[#0B1120]",
+        borderColor: "border-slate-700",
+        indicatorBg: "bg-[#0B1120]"
+    },
+    {
+        id: 3,
+        badge: "Creative Mastery",
+        title: "Unleashing",
+        highlight: "Creative Design",
+        description: "Blending artistic vision with strategic thinking to create unique, memorable brand identities.",
+        ctaMain: "See Designs",
+        ctaSec: "Contact Me",
+        image: heroImage,
+        statLabel: "Awards",
+        statValue: "12+ Won",
+        cardBg: "bg-white", // White
+        textColor: "text-[#0B1120]", // Dark Text
+        mutedColor: "text-slate-600",
+        badgeBg: "bg-[#0B1120]",
+        badgeText: "text-white",
+        borderColor: "border-slate-200",
+        indicatorBg: "bg-[#0B1120]"
+    },
+    {
+        id: 4,
+        badge: "Code & Architecture",
+        title: "Engineering",
+        highlight: "Technical Excellence",
+        description: "Robust, scalable, and secure codebases built to power exacting business requirements.",
+        ctaMain: "View Code",
+        ctaSec: "Tech Stack",
+        image: heroImage,
+        statLabel: "Clients",
+        statValue: "100% Happy",
+        cardBg: "bg-slate-900", // Blue Black
+        textColor: "text-white",
+        mutedColor: "text-slate-300",
+        badgeBg: "bg-white",
+        badgeText: "text-slate-900",
+        borderColor: "border-slate-700",
+        indicatorBg: "bg-slate-900"
+    }
+];
 
 const Hero = () => {
-  return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
-      {/* Background depth layers - The 'Alive' feel */}
-      <div className="absolute inset-0 bg-grid opacity-[0.02]" />
+    const [currentSlide, setCurrentSlide] = useState(0);
 
-      <div className="container relative z-10 pt-36 pb-20">
-        <div className="grid lg:grid-cols-[1.1fr,0.9fr] gap-12 lg:gap-24 items-center">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="space-y-10"
-          >
-            <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/10 bg-white/5 animate-fade-up">
-              <span className="w-2 h-2 rounded-full bg-primary" />
-              <span className="text-xs font-black uppercase tracking-[0.3em] text-white/50">Creative & Reliable</span>
-            </div>
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % slides.length);
+        }, 5000); // 5 seconds per slide
+        return () => clearInterval(timer);
+    }, []);
 
-            <div className="space-y-4 md:space-y-6">
-              <h1 className="text-4xl md:text-7xl lg:text-8xl font-sans font-black text-white leading-[0.9] tracking-tighter">
-                Creating <span className="text-primary italic font-serif">Professional</span><br />
-                <span className="text-[0.8em] md:text-[0.9em] opacity-90 block mt-2">Websites.</span>
-              </h1>
-              <p className="text-base md:text-xl lg:text-2xl text-muted-foreground font-medium max-w-xl leading-relaxed">
-                I build fast, professional websites that help your business grow. High-quality work from Ghana for <span className="text-white border-b-2 border-primary/40">clients around the world.</span>
-              </p>
-            </div>
+    return (
+        <section id="home" className="relative min-h-screen flex items-center justify-center pt-32 md:pt-40 overflow-hidden bg-background">
+            {/* Background Decor */}
+            <div className="absolute inset-0 bg-grid-subtle opacity-40" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary rounded-full blur-[100px] pointer-events-none" />
 
-            <div className="flex flex-wrap gap-4 md:gap-8 pt-4 md:pt-6">
-              <Link
-                to="/hire-me"
-                className="group relative px-8 py-4 md:px-12 md:py-6 rounded-2xl bg-primary text-white font-bold text-base md:text-lg transition-all hover:brightness-110 active:scale-95 flex items-center gap-3 md:gap-4"
-              >
-                Start Your Project
-                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 transition-transform group-hover:translate-x-2" />
-              </Link>
+            <div className="container relative z-10 px-4 md:px-6">
+                <div className="grid xl:grid-cols-2 gap-12 xl:gap-20 items-center">
 
-              <a
-                href="#services"
-                className="group px-8 py-4 md:px-12 md:py-6 rounded-2xl border border-white/10 bg-white/5 text-white font-bold text-base md:text-lg transition-all hover:bg-white/10 flex items-center gap-3 md:gap-4"
-              >
-                Our Expertise
-              </a>
-            </div>
+                    {/* Left Column: Carousel Card & Buttons */}
+                    <div className="relative z-20">
+                        {/* Swiping Carousel Card */}
+                        <div className="overflow-hidden p-2 -m-2"> {/* Wrapper to prevent shadow clipping during swipe */}
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={currentSlide}
+                                    initial={{ opacity: 0, x: 50 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -50 }}
+                                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                                    className={`backdrop-blur-md rounded-[2.5rem] p-6 md:p-12 border ${slides[currentSlide].borderColor} shadow-2xl relative overflow-hidden h-[380px] md:h-[500px] flex flex-col justify-center transition-colors duration-500`}
+                                    style={{
+                                        backgroundColor: slides[currentSlide].id === 1 ? '#2563eb' :
+                                            slides[currentSlide].id === 2 ? '#0B1120' :
+                                                slides[currentSlide].id === 3 ? '#ffffff' : '#0f172a'
+                                    }}
+                                >
+                                    <div className="text-center xl:text-left space-y-8 relative z-10">
+                                        <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${slides[currentSlide].badgeBg} border border-white/20 ${slides[currentSlide].badgeText} font-bold text-xs uppercase tracking-widest shadow-sm mb-6 transition-colors duration-500`}>
+                                            <span className="relative flex h-2 w-2">
+                                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-75"></span>
+                                                <span className="relative inline-flex rounded-full h-2 w-2 bg-current"></span>
+                                            </span>
+                                            {slides[currentSlide].badge}
+                                        </div>
 
-            {/* Premium Metrics */}
-            <div className="grid grid-cols-2 gap-8 md:gap-12 pt-8 md:pt-12 border-t border-white/5">
-              <div>
-                <p className="text-3xl md:text-5xl font-black text-white tracking-tight">50+</p>
-                <p className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-primary font-bold mt-1 md:mt-2">Projects Delivered</p>
-              </div>
-              <div>
-                <p className="text-3xl md:text-5xl font-black text-white tracking-tight">98%</p>
-                <p className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-primary font-bold mt-1 md:mt-2">Success Velocity</p>
-              </div>
-            </div>
-          </motion.div>
+                                        <h1 className={`text-4xl md:text-6xl xl:text-7xl font-black tracking-tighter ${slides[currentSlide].textColor} leading-[1.1] mb-6 transition-colors duration-500 break-words`}>
+                                            {slides[currentSlide].title} <br />
+                                            <span className="opacity-90">{slides[currentSlide].highlight}</span>
+                                        </h1>
 
-          {/* Right Content - The Portrait Visual */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.2 }}
-            className="relative mt-20 lg:mt-0"
-          >
-            <div className="relative aspect-[4/5] w-full max-w-[320px] md:max-w-md lg:max-w-lg mx-auto">
-              {/* Decorative premium frames */}
-              <div className="absolute -inset-4 border border-white/5 rounded-[4rem] -rotate-3" />
-              <div className="absolute -inset-8 border border-primary/10 rounded-[4.5rem] rotate-2" />
+                                        <p className={`text-lg md:text-2xl ${slides[currentSlide].mutedColor} font-medium max-w-2xl mx-auto xl:mx-0 leading-relaxed transition-colors duration-500`}>
+                                            {slides[currentSlide].description}
+                                        </p>
 
-              <div className="relative h-full rounded-[3.5rem] overflow-hidden border border-white/10 shadow-2xl glass-card">
-                <img
-                  src={vardyPortrait}
-                  alt="Vardy Corporate"
-                  className="w-full h-full object-cover grayscale brightness-90 hover:grayscale-0 hover:brightness-100 transition-all duration-1000"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
-              </div>
+                                    </div>
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
 
-              {/* Floating Award/Badge */}
-              <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-6 -right-6 md:-top-10 md:-right-10 glass-card p-4 md:p-8 rounded-2xl md:rounded-3xl border-primary/20 shadow-2xl backdrop-blur-3xl"
-              >
-                <p className="text-2xl md:text-4xl font-black text-primary leading-tight">Top<br />Quality.</p>
-                <p className="text-[8px] md:text-[10px] uppercase font-bold tracking-[0.3em] text-white/60 mt-1 md:mt-2">Professional Studio</p>
-              </motion.div>
+                        {/* Indicators (Outside Card) */}
+                        <div className="flex justify-center xl:justify-start gap-3 mt-6 pl-6">
+                            {slides.map((slide, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setCurrentSlide(index)}
+                                    className={`h-2 rounded-full transition-all duration-300 ${index === currentSlide ? `w-8 ${slide.indicatorBg}` : "w-2 bg-primary/20 hover:bg-primary/40"}`}
+                                    aria-label={`Go to slide ${index + 1}`}
+                                />
+                            ))}
+                        </div>
 
-              {/* Success Badge */}
-              <div className="absolute -bottom-6 -left-6 md:-bottom-8 md:-left-8 glass-card p-4 md:p-6 rounded-2xl md:rounded-3xl border-white/10 shadow-2xl flex items-center gap-3 md:gap-5">
-                <div className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-primary/20 flex items-center justify-center text-primary border border-primary/30">
-                  <span className="text-xl md:text-2xl font-black">★</span>
+                        {/* Static Buttons (Outside Card) */}
+                        <div className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 md:gap-6 mt-8 pl-4">
+                            <Link to="/hire-me" className="btn-primary w-full sm:w-auto text-lg px-8 py-4 flex items-center justify-center gap-3 group shadow-lg shadow-primary/20">
+                                Start a Project
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                            <a href="/#services" className="w-full sm:w-auto px-8 py-4 rounded-full border-2 border-border text-foreground font-bold hover:border-primary hover:text-primary transition-all flex items-center justify-center gap-3 group bg-secondary shadow-sm">
+                                My Services
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Right Column: Portrait Image (Static) */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="relative mx-auto xl:mx-0 w-full max-w-sm lg:max-w-md xl:max-w-md z-10"
+                    >
+                        <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-8 border-card shadow-2xl bg-secondary">
+                            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent z-10" />
+                            <img
+                                src={heroImage}
+                                alt="Main Portrait"
+                                className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-700"
+                            />
+                        </div>
+
+                        {/* Floating Badge */}
+                        <motion.div
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ delay: 0.6, type: "spring" }}
+                            className="absolute -bottom-6 -left-6 md:bottom-10 md:-left-12 bg-card p-6 rounded-3xl shadow-xl border border-primary/10 flex items-center gap-4 z-20"
+                        >
+                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <MousePointer2 className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Experience</p>
+                                <p className="text-xl font-black text-foreground">5+ Years</p>
+                            </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
-                <div>
-                  <p className="text-base md:text-lg font-black text-white">Top Rated</p>
-                  <p className="text-[8px] md:text-[10px] uppercase tracking-widest text-primary font-bold">Graphic & Web</p>
-                </div>
-              </div>
             </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 };
 
 export default Hero;
